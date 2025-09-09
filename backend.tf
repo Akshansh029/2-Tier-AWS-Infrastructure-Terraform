@@ -13,3 +13,7 @@ terraform {
     dynamodb_table = "terraform-remote-infra-table"
   }
 }
+
+provider "aws" {
+  region = var.aws_region
+}
