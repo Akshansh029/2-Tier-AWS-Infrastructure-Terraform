@@ -1,5 +1,5 @@
 # VPC
-resource "aws_vpc" "2-tier-vpc" {
+resource "aws_vpc" "two-tier-vpc" {
   cidr_block       = var.vpc-cidr  # "10.0.0.0/16"
   instance_tenancy = "default"
 
@@ -10,18 +10,18 @@ resource "aws_vpc" "2-tier-vpc" {
 
 # Internet Gateway 
 resource "aws_internet_gateway" "igw" {
-  vpc_id = aws_vpc.2-tier-vpc.id
+  vpc_id = aws_vpc.two-tier-vpc.id
 
   tags = {
     Name = var.igw-name
   }
 
-  depends_on = [ aws_vpc.2-tier-vpc ]
+  depends_on = [ aws_vpc.two-tier-vpc ]
 }
 
 # Public subnet 1 for Web Tier
 resource "aws_subnet" "public-subnet1" {
-  vpc_id     = aws_vpc.2-tier-vpc.id
+  vpc_id     = aws_vpc.two-tier-vpc.id
   cidr_block = var.public-subnet-cidr1 # "10.0.1.0/24"
   availability_zone = "us-east-1a"
   map_public_ip_on_launch = true
@@ -35,7 +35,7 @@ resource "aws_subnet" "public-subnet1" {
 
 # Public subnet 2 for Web Tier
 resource "aws_subnet" "public-subnet2" {
-  vpc_id     = aws_vpc.2-tier-vpc.id
+  vpc_id     = aws_vpc.two-tier-vpc.id
   cidr_block = var.public-subnet-cidr2 # "10.0.1.0/24"
   availability_zone = "us-east-1b"
   map_public_ip_on_launch = true
@@ -49,7 +49,7 @@ resource "aws_subnet" "public-subnet2" {
 
 # Private subnet 1 for DB Tier
 resource "aws_subnet" "private-subnet1" {
-  vpc_id     = aws_vpc.2-tier-vpc.id
+  vpc_id     = aws_vpc.two-tier-vpc.id
   cidr_block = var.private-subnet-cidr1 # "10.0.1.0/24"
   availability_zone = "us-east-1b"
 
@@ -62,7 +62,7 @@ resource "aws_subnet" "private-subnet1" {
 
 # Private subnet 2 for DB Tier
 resource "aws_subnet" "private-subnet2" {
-  vpc_id     = aws_vpc.2-tier-vpc.id
+  vpc_id     = aws_vpc.two-tier-vpc.id
   cidr_block = var.private-subnet-cidr2 # "10.0.1.0/24"
   availability_zone = "us-east-1b"
 
@@ -121,7 +121,7 @@ resource "aws_nat_gateway" "nat-gw2" {
 
 # Route table 1 for Public subnet 
 resource "aws_route_table" "public-rt1" {
-  vpc_id = aws_vpc.2-tier-vpc.id
+  vpc_id = aws_vpc.two-tier-vpc.id
 
   route {
     cidr_block = "0.0.0.0/0"
@@ -143,7 +143,7 @@ resource "aws_route_table_association" "public-rt1-association" {
 
 # Route table 2 for Public subnet 
 resource "aws_route_table" "public-rt2" {
-  vpc_id = aws_vpc.2-tier-vpc.id
+  vpc_id = aws_vpc.two-tier-vpc.id
 
   route {
     cidr_block = "0.0.0.0/0"
@@ -167,7 +167,7 @@ resource "aws_route_table_association" "public-rt2-association" {
 
 # Route table 1 for Private subnet 
 resource "aws_route_table" "private-rt1" {
-  vpc_id = aws_vpc.2-tier-vpc.id
+  vpc_id = aws_vpc.two-tier-vpc.id
 
   route {
     cidr_block = "0.0.0.0/0"
@@ -191,7 +191,7 @@ resource "aws_route_table_association" "private-rt1-association" {
 
 # Route table 2 for Private subnet 
 resource "aws_route_table" "private-rt2" {
-  vpc_id = aws_vpc.2-tier-vpc.id
+  vpc_id = aws_vpc.two-tier-vpc.id
 
   route {
     cidr_block = "0.0.0.0/0"

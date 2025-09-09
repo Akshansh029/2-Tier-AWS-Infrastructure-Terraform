@@ -1,0 +1,35 @@
+.terraform/
+*.tfstate
+*.tfstate.*
+terraform.tfstate
+terraform.tfstate.backup
+crash.log
+
+*.tfplan
+
+override.tf
+override.tf.json
+*_override.tf
+
+# Terraform CLI config (may contain credentials)
+.terraformrc
+terraform.rc
+
+.vscode/
+
+# JetBrains IDEs
+.idea/
+
+# macOS
+.DS_Store
+
+# Swap / backup files
+*~
+*.swp
+*.bak
+
+# Windows Thumbs
+Thumbs.db
+
+# Logs
+*.log
