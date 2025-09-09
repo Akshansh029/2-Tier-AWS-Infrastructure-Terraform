@@ -24,6 +24,7 @@ resource "aws_subnet" "public-subnet1" {
   vpc_id     = aws_vpc.2-tier-vpc.id
   cidr_block = var.public-subnet-cidr1 # "10.0.1.0/24"
   availability_zone = "us-east-1a"
+  map_public_ip_on_launch = true
 
   tags = {
     Name = var.public-subnet1-name
@@ -37,6 +38,7 @@ resource "aws_subnet" "public-subnet2" {
   vpc_id     = aws_vpc.2-tier-vpc.id
   cidr_block = var.public-subnet-cidr2 # "10.0.1.0/24"
   availability_zone = "us-east-1b"
+  map_public_ip_on_launch = true
 
   tags = {
     Name = var.public-subnet2-name
@@ -94,13 +96,27 @@ resource "aws_eip" "eip2" {
 }
 
 # NAT gateway 1 for private-subnet1
-resource "aws_nat_gateway" "example" {
-  allocation_id = aws_eip.example.id
-  subnet_id     = aws_subnet.example.id
+resource "aws_nat_gateway" "nat-gw1" {
+  allocation_id = aws_eip.eip1
+  subnet_id     = aws_subnet.public-subnet1
 
   tags = {
-    Name = "gw NAT"
+    Name = var.nat-gw1-name
   }
 
-  depends_on = [aws_internet_gateway.example]
+  depends_on = [aws_eip.eip1]
 }
+
+# NAT gateway 2 for private-subnet2
+resource "aws_nat_gateway" "nat-gw2" {
+  allocation_id = aws_eip.eip2
+  subnet_id     = aws_subnet.public-subnet2
+
+  tags = {
+    Name = var.nat-gw2-name
+  }
+
+  depends_on = [ aws_eip.eip2, aws_nat_gateway.nat-gw1 ]
+}
+
+# Route table 1 for Public subnet 

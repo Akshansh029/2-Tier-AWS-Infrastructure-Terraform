@@ -11,3 +11,5 @@ variable "private-subnet2-name" {}
 variable "igw-name" {}
 variable "eip1-name" {}
 variable "eip2-name" {}
+variable "nat-gw1-name" {}
+variable "nat-gw2-name" {}
