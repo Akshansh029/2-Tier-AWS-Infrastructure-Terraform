@@ -208,7 +208,7 @@ resource "aws_route_table" "private-rt2" {
 # Associate of Private Route Table 2
 resource "aws_route_table_association" "private-rt2-association" {
   subnet_id      = aws_subnet.private-subnet2.id
-  route_table_id = aws_route_table.private-rt2
+  route_table_id = aws_route_table.private-rt2.id
 
   depends_on = [ aws_route_table.private-rt1 ]
 }

@@ -6,7 +6,7 @@ resource "aws_launch_template" "Web-LC" {
 
   vpc_security_group_ids = [data.aws_security_group.web-sg.id]
 
-  user_data = file("deploy.sh")
+  user_data = file("${path.module}/deploy.sh")
 }
 
 # Autoscaling for the Web Tier
