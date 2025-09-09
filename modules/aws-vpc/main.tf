@@ -97,8 +97,8 @@ resource "aws_eip" "eip2" {
 
 # NAT gateway 1 for private-subnet1
 resource "aws_nat_gateway" "nat-gw1" {
-  allocation_id = aws_eip.eip1
-  subnet_id     = aws_subnet.public-subnet1
+  allocation_id = aws_eip.eip1.id
+  subnet_id     = aws_subnet.public-subnet1.id
 
   tags = {
     Name = var.nat-gw1-name
@@ -109,8 +109,8 @@ resource "aws_nat_gateway" "nat-gw1" {
 
 # NAT gateway 2 for private-subnet2
 resource "aws_nat_gateway" "nat-gw2" {
-  allocation_id = aws_eip.eip2
-  subnet_id     = aws_subnet.public-subnet2
+  allocation_id = aws_eip.eip2.id
+  subnet_id     = aws_subnet.public-subnet2.id
 
   tags = {
     Name = var.nat-gw2-name
@@ -120,3 +120,95 @@ resource "aws_nat_gateway" "nat-gw2" {
 }
 
 # Route table 1 for Public subnet 
+resource "aws_route_table" "public-rt1" {
+  vpc_id = aws_vpc.2-tier-vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw.id
+  }
+
+  tags = {
+    Name = var.public-rt1-name
+  }
+}
+
+# Associate of Public Route Table 1
+resource "aws_route_table_association" "public-rt1-association" {
+  subnet_id      = aws_subnet.public-subnet1.id
+  route_table_id = aws_route_table.public-rt1.id
+
+  depends_on = [ aws_route_table.public-rt1 ]
+}
+
+# Route table 2 for Public subnet 
+resource "aws_route_table" "public-rt2" {
+  vpc_id = aws_vpc.2-tier-vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw.id
+  }
+
+  tags = {
+    Name = var.public-rt2-name
+  }
+
+  depends_on = [ aws_route_table_association.public-rt1-association ]
+}
+
+# Associate of Public Route Table 2
+resource "aws_route_table_association" "public-rt2-association" {
+  subnet_id      = aws_subnet.public-subnet2.id
+  route_table_id = aws_route_table.public-rt2.id
+
+  depends_on = [ aws_route_table.public-rt2 ]
+}
+
+# Route table 1 for Private subnet 
+resource "aws_route_table" "private-rt1" {
+  vpc_id = aws_vpc.2-tier-vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.nat-gw1.id
+  }
+
+  tags = {
+    Name = var.private-rt1-name
+  }
+
+  depends_on = [ aws_route_table_association.public-rt2-association ]
+}
+
+# Associate of Private Route Table 2
+resource "aws_route_table_association" "private-rt1-association" {
+  subnet_id      = aws_subnet.private-subnet1.id
+  route_table_id = aws_route_table.private-rt1.id
+
+  depends_on = [ aws_route_table.private-rt1 ]
+}
+
+# Route table 2 for Private subnet 
+resource "aws_route_table" "private-rt2" {
+  vpc_id = aws_vpc.2-tier-vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.nat-gw2.id
+  }
+
+  tags = {
+    Name = var.private-rt2-name
+  }
+
+  depends_on = [ aws_route_table_association.private-rt1-association ]
+}
+
+# Associate of Private Route Table 2
+resource "aws_route_table_association" "private-rt2-association" {
+  subnet_id      = aws_subnet.private-subnet2.id
+  route_table_id = aws_route_table.private-rt2
+
+  depends_on = [ aws_route_table.private-rt1 ]
+}

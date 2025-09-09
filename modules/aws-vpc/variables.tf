@@ -13,3 +13,7 @@ variable "eip1-name" {}
 variable "eip2-name" {}
 variable "nat-gw1-name" {}
 variable "nat-gw2-name" {}
+variable "public-rt1-name" {}
+variable "public-rt2-name" {}
+variable "private-rt1-name" {}
+variable "private-rt2-name" {}
