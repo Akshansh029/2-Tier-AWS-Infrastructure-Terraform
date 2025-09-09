@@ -22,30 +22,29 @@
 "PRIVATE-RT2-NAME" = "2-tier-private-route-table2"
 
 # SG vars
-"ALB-SG-NAME" = 
-"WEB-SG-NAME" =
-"RDS-SG-NAME" =
+"ALB-SG-NAME" = "2-tier-alb-sg"
+"WEB-SG-NAME" = "2-tier-web-sg"
+"DB-SG-NAME" = "2-tier-db-sg"
 
 # RDS vars
-"SG-NAME" =
-"DB-SG-NAME" =
-"RDS-USERNAME" =
-"RDS-PASSWORD" =
-"RDS-CLUSTER-NAME" =
-"DB-NAME" =
+"SG-NAME" = "2-tier-rds-sg"
+"RDS-USERNAME" = ${{ secrets.RDS_USERNAME }}
+"RDS-PASSWORD" = ${{ secrets.RDS_PASSWORD }}
+"RDS-CLUSTER-NAME" = "2-tier-rds-cluster"
+"DB-NAME" = "mydb"
 
 # ALB
-"WEB-ALG-NAME" =
-"WEB-ALG-TG-NAME" =
+"WEB-ALB-NAME" = "2-tier-web-alb"
+"WEB-ALB-TG-NAME" = "2-tier-alb-tg"
 
 # IAM
-"IAM-PROFILE-NAME" =
-"IAM-POLICY" =
-"IAM-ROLE" =
+"IAM-PROFILE-NAME" = "IAM-instance-profile-for-ec2-SSM"
+"IAM-POLICY" = "IAM-policy-for-ec2-SSM"
+"IAM-ROLE" = "IAM-role-for-ec2-SSM"
 
 # ASG
-"WEB-ASG-NAME" =
-"LAUNCH-TEMPLATE-NAME" =
-"AMI-NAME" =
-"TG-NAME" =
-"INSTANCE-PROFILE-NAME" =
+"WEB-ASG-NAME" = "2-tier-asg"
+"LAUNCH-TEMPLATE-NAME" = "web-launch-template"
+"AMI-NAME" = "ec2-ami"
+"TG-NAME" = "2-tier-asg-tg"
+"INSTANCE-PROFILE-NAME" = "2-tier-instance-profile"

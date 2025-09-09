@@ -1,6 +1,6 @@
 # Creating Load balancer for Web tier
 resource "aws_lb" "web-tier-alb" {
-  name = var.web-alg-name
+  name = var.web-alb-name
   internal           = false
   load_balancer_type = "application"
   security_groups    = [data.aws_security_group.web-alg-sg.id]
@@ -9,13 +9,13 @@ resource "aws_lb" "web-tier-alb" {
   enable_deletion_protection = true
 
   tags = {
-      Name = var.web-alg-name
+      Name = var.web-alb-name
   }
 }
 
 # Target group for ALB
 resource "aws_lb_target_group" "alg-tg" {
-  name     = var.web-alg-tg-name
+  name     = var.web-alb-tg-name
   target_type = "instance"
   port     = 80
   protocol = "HTTP"
@@ -32,7 +32,7 @@ resource "aws_lb_target_group" "alg-tg" {
   }
 
   tags = {
-    Name = var.web-alg-tg-name
+    Name = var.web-alb-tg-name
   }
 
   lifecycle {

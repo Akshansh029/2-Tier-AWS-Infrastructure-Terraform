@@ -24,19 +24,18 @@ variable "PRIVATE-RT2-NAME" {}
 # SG vars
 variable "ALB-SG-NAME" {}
 variable "WEB-SG-NAME" {}
-variable "RDS-SG-NAME" {}
+variable "DB-SG-NAME" {}
 
 # RDS vars
 variable "SG-NAME" {}
-variable "DB-SG-NAME" {}
 variable "RDS-USERNAME" {}
 variable "RDS-PASSWORD" {}
 variable "RDS-CLUSTER-NAME" {}
 variable "DB-NAME" {}
 
 # ALB
-variable "WEB-ALG-NAME" {}
-variable "WEB-ALG-TG-NAME" {}
+variable "WEB-ALB-NAME" {}
+variable "WEB-ALB-TG-NAME" {}
 
 # IAM
 variable "IAM-PROFILE-NAME" {}

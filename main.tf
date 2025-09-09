@@ -30,7 +30,7 @@ module "security-group" {
   vpc-name = var.VPC-NAME
   alb-sg-name = var.ALB-SG-NAME
   web-sg-name = var.WEB-SG-NAME
-  rds-sg-name = var.RDS-SG-NAME
+  rds-sg-name = var.DB-SG-NAME
 
   depends_on = [ module.vpc ]
 }
@@ -58,9 +58,9 @@ module "alb" {
   vpc-name = var.VPC-NAME
   public-subnet1-name = var.PUBLIC-SUBNET1-NAME
   public-subnet2-name = var.PUBLIC-SUBNET2-NAME
-  web-alg-name = var.WEB-ALG-NAME
-  web-alg-sg-name = var.WEB-SG-NAME
-  web-alg-tg-name = var.WEB-ALG-TG-NAME
+  web-alb-name = var.WEB-ALB-NAME
+  web-alb-sg-name = var.WEB-SG-NAME
+  web-alb-tg-name = var.WEB-ALB-TG-NAME
 
   depends_on = [ module.rds ]
 }
