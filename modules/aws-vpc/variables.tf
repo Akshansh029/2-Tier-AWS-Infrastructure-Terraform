@@ -1,0 +1,13 @@
+variable "vpc-cidr" {}
+variable "public-subnet-cidr1" {}
+variable "public-subnet-cidr2" {}
+variable "private-subnet-cidr1" {}
+variable "private-subnet-cidr2" {}
+variable "vpc-name" {}
+variable "public-subnet1-name" {}
+variable "public-subnet2-name" {}
+variable "private-subnet1-name" {}
+variable "private-subnet2-name" {}
+variable "igw-name" {}
+variable "eip1-name" {}
+variable "eip2-name" {}
