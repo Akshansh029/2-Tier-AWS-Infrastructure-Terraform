@@ -7,8 +7,8 @@ variable "PUBLIC-SUBNET-CIDR1" {}
 variable "PUBLIC-SUBNET-CIDR2" {}
 variable "PRIVATE-SUBNET-CIDR1" {}
 variable "PRIVATE-SUBNET-CIDR2" {}
-variable "PUBLIC-SUBNET1-NAME-" {}
-variable "PUBLIC-SUBNET2-NAME-" {}
+variable "PUBLIC-SUBNET1-NAME" {}
+variable "PUBLIC-SUBNET2-NAME" {}
 variable "PRIVATE-SUBNET1-NAME" {}
 variable "PRIVATE-SUBNET2-NAME" {}
 variable "IGW-NAME" {}
@@ -28,6 +28,7 @@ variable "RDS-SG-NAME" {}
 
 # RDS vars
 variable "SG-NAME" {}
+variable "DB-SG-NAME" {}
 variable "RDS-USERNAME" {}
 variable "RDS-PASSWORD" {}
 variable "RDS-CLUSTER-NAME" {}
