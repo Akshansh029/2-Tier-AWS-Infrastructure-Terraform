@@ -1,5 +1,3 @@
-variable "aws_region" {}
-
 # VPC vars
 variable "VPC-NAME" {}
 variable "VPC-CIDR" {}

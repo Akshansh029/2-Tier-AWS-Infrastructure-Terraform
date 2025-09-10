@@ -8,7 +8,7 @@ resource "aws_db_subnet_group" "db_subnet_group" {
 resource "aws_rds_cluster" "default" {
   cluster_identifier      = "aurora-cluster"
   engine                  = "aurora-mysql"
-  engine_version          = "8.0.mysql_aurora.3.02.2"
+  engine_version          = "8.0.39mysql_aurora.3.08.0" # Aurora MySQL 3.08.0 (compatible with MySQL 8.0.39)
   database_name           = var.db-name
   master_username         = var.rds-username
   master_password         = var.rds-password

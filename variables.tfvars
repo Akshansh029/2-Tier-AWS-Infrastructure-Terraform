@@ -8,7 +8,7 @@ PRIVATE-SUBNET-CIDR2 = "10.0.4.0/24"
 PUBLIC-SUBNET1-NAME = "two-tier-public-subnet1"
 PUBLIC-SUBNET2-NAME = "two-tier-public-subnet2"
 PRIVATE-SUBNET1-NAME = "two-tier-private-subnet1"
-PRIVATE-SUBNET2-NAME = "two-tier-private-subnet1"
+PRIVATE-SUBNET2-NAME = "two-tier-private-subnet2"
 IGW-NAME = "two-tier-infra-igw"
 EIP1-NAME = "two-tier-elastic-ip1"
 EIP2-NAME = "two-tier-elastic-ip2"
@@ -36,9 +36,9 @@ WEB-ALB-NAME = "two-tier-web-alb"
 WEB-ALB-TG-NAME = "two-tier-alb-tg"
 
 # IAM
-IAM-PROFILE-NAME = "IAM-instance-profile-for-ec2-SSM"
-IAM-POLICY = "IAM-policy-for-ec2-SSM"
-IAM-ROLE = "IAM-role-for-ec2-SSM"
+IAM-PROFILE-NAME = "two-tier-IAM-instance-profile-for-ec2-SSM"
+IAM-POLICY = "two-tier-IAM-policy-for-ec2-SSM"
+IAM-ROLE = "two-tier-IAM-role-for-ec2-SSM"
 
 # ASG
 WEB-ASG-NAME = "two-tier-asg"
