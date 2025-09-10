@@ -8,7 +8,7 @@ resource "aws_db_subnet_group" "db_subnet_group" {
 resource "aws_rds_cluster" "default" {
   cluster_identifier      = "aurora-cluster"
   engine                  = "aurora-mysql"
-  engine_version          = "8.0.39mysql_aurora.3.08.0" # Aurora MySQL 3.08.0 (compatible with MySQL 8.0.39)
+  engine_version          = "8.0.mysql_aurora.3.08.0" # Aurora MySQL 3.08.0 (compatible with MySQL 8.0.39)
   database_name           = var.db-name
   master_username         = var.rds-username
   master_password         = var.rds-password
@@ -28,7 +28,7 @@ resource "aws_rds_cluster" "default" {
 resource "aws_rds_cluster_instance" "primary_instance" {
   identifier         = "primary-instance"
   cluster_identifier = aws_rds_cluster.default.id
-  instance_class     = "db.r4.large"
+  instance_class     = "db.r5.large"
   engine             = aws_rds_cluster.default.engine
   engine_version     = aws_rds_cluster.default.engine_version
 }
@@ -38,7 +38,7 @@ resource "aws_rds_cluster_instance" "read_replica_instance" {
       count = 1
   identifier         = "read-replica-instance"
   cluster_identifier = aws_rds_cluster.default.id
-  instance_class     = "db.r4.large"
+  instance_class     = "db.r5.large"
   engine             = aws_rds_cluster.default.engine
   engine_version     = aws_rds_cluster.default.engine_version
 

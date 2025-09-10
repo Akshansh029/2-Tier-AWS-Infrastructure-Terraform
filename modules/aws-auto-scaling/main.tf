@@ -6,7 +6,7 @@ resource "aws_launch_template" "Web-LC" {
 
   vpc_security_group_ids = [data.aws_security_group.web-sg.id]
 
-  user_data = file("${path.module}/deploy.sh")
+  user_data = filebase64("${path.module}/deploy.sh")
 }
 
 # Autoscaling for the Web Tier
@@ -18,6 +18,7 @@ resource "aws_autoscaling_group" "web-tier-asg" {
   health_check_type         = "ELB"
   target_group_arns = [data.aws_lb_target_group.tg.arn]
   force_delete              = true
+  vpc_zone_identifier = [data.aws_subnet.public-subnet1.id, data.aws_subnet.public-subnet2.id]
 
   launch_template {
     id = aws_launch_template.Web-LC.id
