@@ -6,7 +6,7 @@ resource "aws_lb" "web-tier-alb" {
   security_groups    = [data.aws_security_group.web-alg-sg.id]
   subnets            = [data.aws_subnet.public-subnet1.id, data.aws_subnet.public-subnet2.id]
   ip_address_type = "ipv4"
-  enable_deletion_protection = true
+  enable_deletion_protection = false # True for production
 
   tags = {
       Name = var.web-alb-name

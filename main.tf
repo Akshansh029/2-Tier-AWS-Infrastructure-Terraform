@@ -83,7 +83,7 @@ module "asg" {
   web-asg-name = var.WEB-SG-NAME
   launch-template-name = var.LAUNCH-TEMPLATE-NAME
   ami-name = var.AMI-NAME
-  web-sg-name = var.WEB-SG-NAME
+  web-sg-name = var.WEB-ASG-NAME
   public-subnet1-name = var.PUBLIC-SUBNET1-NAME
   public-subnet2-name = var.PUBLIC-SUBNET2-NAME
   tg-name = var.TG-NAME

@@ -9,12 +9,12 @@ data "aws_ami" "ami" {
   owners = ["099720109477"]
 }
 
-data "aws_security_group" "web-sg" {
-  filter {
-    name = "tag:Name"
-    values = [var.web-sg-name]
-  }
-}
+# data "aws_security_group" "web-sg" {
+#   filter {
+#     name = "tag:Name"
+#     values = [var.web-sg-name]
+#   }
+# }
 
 data "aws_subnet" "public-subnet1" {
   filter {

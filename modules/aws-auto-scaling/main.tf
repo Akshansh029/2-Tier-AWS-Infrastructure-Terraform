@@ -4,7 +4,7 @@ resource "aws_launch_template" "Web-LC" {
   image_id = data.aws_ami.ami.image_id
   instance_type = "t2.micro"
 
-  vpc_security_group_ids = [data.aws_security_group.web-sg.id]
+  # vpc_security_group_ids = [data.aws_security_group.web-sg.id]
 
   user_data = filebase64("${path.module}/deploy.sh")
 }
@@ -13,7 +13,8 @@ resource "aws_launch_template" "Web-LC" {
 resource "aws_autoscaling_group" "web-tier-asg" {
   name                      = var.web-asg-name
   max_size                  = 4
-  min_size                  = 2
+  min_size                  = 1
+  desired_capacity = 1
   health_check_grace_period = 300
   health_check_type         = "ELB"
   target_group_arns = [data.aws_lb_target_group.tg.arn]
