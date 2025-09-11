@@ -25,37 +25,7 @@ The infrastructure is designed to host web applications with high availability, 
 
 ### Architecture Diagram
 
-```
-┌─────────────────┐    ┌─────────────────┐
-│   Internet      │    │   Internet      │
-│   Gateway       │    │   Gateway       │
-└─────────────────┘    └─────────────────┘
-         │                       │
-┌─────────────────────────────────────────┐
-│              Public Subnets              │
-│  ┌─────────────┐    ┌─────────────┐    │
-│  │ Application │    │ Application │    │
-│  │Load Balancer│    │Load Balancer│    │
-│  └─────────────┘    └─────────────┘    │
-└─────────────────────────────────────────┘
-         │                       │
-┌─────────────────────────────────────────┐
-│             Private Subnets              │
-│  ┌─────────────┐    ┌─────────────┐    │
-│  │   Web Tier  │    │   Web Tier  │    │
-│  │ EC2 Instance│    │ EC2 Instance│    │
-│  └─────────────┘    └─────────────┘    │
-└─────────────────────────────────────────┘
-         │                       │
-┌─────────────────────────────────────────┐
-│           Database Subnets               │
-│  ┌─────────────┐    ┌─────────────┐    │
-│  │  Database   │    │  Database   │    │
-│  │   Tier      │    │   Tier      │    │
-│  │   (RDS)     │    │ (Standby)   │    │
-│  └─────────────┘    └─────────────┘    │
-└─────────────────────────────────────────┘
-```
+![Infrastructure](2-tier-infra.drawio.png)
 
 ### Components
 
